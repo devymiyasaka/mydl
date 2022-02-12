@@ -1,5 +1,7 @@
 <?php
+    include("./template/head.php");
     include("./template/header.php");
+    include("./template/greeting.php");
 ?>
 
 <body style="background-color:whitesmoke">
@@ -19,18 +21,18 @@
                         <th>完了</th>
                     </tr>
                     <tr class="text-center">
-                        <td class="text-left">ゴミを捨てる</td>
-                        <td>2022/01/02<br>残日数：2日</td>
+                        <td class="text-left">Task_1入力値aaaaa</td>
+                        <td>Task_dl_1<br>残日数：Task_1_date日</td>
                         <td><a href="" class="btn btn-primary">完了</a></td>
                     </tr>
                     <tr class="text-center">
-                        <td class="text-left">ゴミを捨てる</td>
-                        <td>2022/01/02<br>残日数：2日</td>
+                        <td class="text-left">Task_2入力値</td>
+                        <td>Task_dl_2<br>残日数：Task_2_date日</td>
                         <td><a href="" class="btn btn-primary">完了</a></td>
                     </tr>
                     <tr class="text-center">
-                        <td class="text-left">ゴミを捨てる</td>
-                        <td>2022/01/02<br>残日数：2日</td>
+                        <td class="text-left">Task_3</td>
+                        <td>Task_dl_3<br>残日数：Task_3_date日</td>
                         <td><a href="" class="btn btn-primary">完了</a></td>
                     </tr>
                 </tbody>
