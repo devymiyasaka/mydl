@@ -1,6 +1,5 @@
 <?php
     include("./template/header.php");
-    include("./app/model/TaskInfo.php");
 ?>
 
 <body style="background-color:whitesmoke">

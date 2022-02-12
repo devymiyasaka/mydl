@@ -1,19 +1,52 @@
 <?php
     include("../template/header.php");
-    include("../app/model/TaskInfo.php");
+    include("../model/Tasks.php");
 ?>
 
 <?php 
-    if(isset($_POST['sbumit'])){
+    $errorMessage = [];
+    if(isset($_POST['submit'])){
         $param = $_POST;
-        foreach ($param as $key => $value) {
-            echo $value;
+        $tasks = new Tasks();
+        $tasks->setName($param['name']);
+        $tasks->setEndDate($param['end_date']);
+        $tasks->setDescription($param['description']);
+        $errorMessage = $tasks->validate();
+        if(!$errorMessage){
+            // 1.データベースに接続する。
+            $pdo = new PDO('mysql:dbname=mydl;host=127.0.0.01:8889;' , 'root', 'root');
+            $pdo->query('SET NAMES utf8;');
+
+            // 2.実行したいSQL文をセットする。
+            $stmt = $pdo->prepare('SELECT * FROM users');
+
+            // 3.SQLに対してパラメーターをセットする。【任意】
+            // $stmt->bindValue(':mail_address', $mail_address, PDO::PARAM_STR);
+
+            // 4.実際にSQLを実行する。
+            $stmt->execute();
+
+            // 5.結果を取得する。【任意】
+            $user = $stmt->fetch();
+
+            var_dump($user);
+            // 6.データーベースから切断する。
+            unset($pdo);
         }
     };
 ?>
 
 <body style="background-color:whitesmoke">
     <div class="mb-5 container">
+        <?php
+            if($errorMessage){
+                foreach ($errorMessage as $message) {
+                    echo '<div class="alert alert-danger" role="alert">';
+                    echo $message;
+                    echo '</div>';
+                }
+            }
+        ?>
         <h2>タスク一覧</h2>
         <form action="/task/regist.php" method="post">
             <div class="form-group row">
@@ -27,11 +60,12 @@
                 </div>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="discription">説明</label>
-                <textarea name="discription" class="form-control" id="" cols="30" rows="10"></textarea>
+                <label class="form-label" for="description">説明</label>
+                <textarea name="description" class="form-control" id="" cols="30" rows="10"></textarea>
             </div>
             <div class="mb-5">
-                <button type="submit" name="sbumit" class="btn btn-primary">登録</button>
+                <a href="/" class="btn btn-success">戻る</a>
+                <button type="submit" name="submit" class="btn btn-primary">登録</button>
             </div>
         </form>
     </div>
