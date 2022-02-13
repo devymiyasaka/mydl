@@ -4,36 +4,36 @@
 ?>
 
 <?php 
-    $errorMessage = [];
-    if(isset($_POST['submit'])){
-        $param = $_POST;
-        $tasks = new Tasks();
-        $tasks->setName($param['name']);
-        $tasks->setEndDate($param['end_date']);
-        $tasks->setDescription($param['description']);
-        $errorMessage = $tasks->validate();
-        if(!$errorMessage){
-            // 1.データベースに接続する。
-            $pdo = new PDO('mysql:dbname=mydl;host=127.0.0.01:8889;' , 'root', 'root');
-            $pdo->query('SET NAMES utf8;');
+    // $errorMessage = [];
+    // if(isset($_POST['submit'])){
+    //     $param = $_POST;
+    //     $tasks = new Tasks();
+    //     $tasks->setName($param['name']);
+    //     $tasks->setEndDate($param['end_date']);
+    //     $tasks->setDescription($param['description']);
+    //     $errorMessage = $tasks->validate();
+    //     if(!$errorMessage){
+    //         // 1.データベースに接続する。
+    //         $pdo = new PDO('mysql:dbname=mydl;host=127.0.0.01:8889;' , 'root', 'root');
+    //         $pdo->query('SET NAMES utf8;');
 
-            // 2.実行したいSQL文をセットする。
-            $stmt = $pdo->prepare('SELECT * FROM users');
+    //         // 2.実行したいSQL文をセットする。
+    //         $stmt = $pdo->prepare('SELECT * FROM users');
 
-            // 3.SQLに対してパラメーターをセットする。【任意】
-            // $stmt->bindValue(':mail_address', $mail_address, PDO::PARAM_STR);
+    //         // 3.SQLに対してパラメーターをセットする。【任意】
+    //         // $stmt->bindValue(':mail_address', $mail_address, PDO::PARAM_STR);
 
-            // 4.実際にSQLを実行する。
-            $stmt->execute();
+    //         // 4.実際にSQLを実行する。
+    //         $stmt->execute();
 
-            // 5.結果を取得する。【任意】
-            $user = $stmt->fetch();
+    //         // 5.結果を取得する。【任意】
+    //         $user = $stmt->fetch();
 
-            var_dump($user);
-            // 6.データーベースから切断する。
-            unset($pdo);
-        }
-    };
+    //         var_dump($user);
+    //         // 6.データーベースから切断する。
+    //         unset($pdo);
+    //     }
+    // };
 ?>
 
 <body>
@@ -47,11 +47,11 @@
                 }
             }
         ?>
-        <h2>タスクを登録</h2>
+        <h2>最終目標</h2>
         <form action="/task/regist.php" method="post">
             <div class="form-group row">
                 <div  class="col-sm-9">
-                    <label class="form-label" for="name">タスク名</label>
+                    <label class="form-label" for="name">最終目標タイトル</label>
                     <input type="text" class="form-control" name="name" id="">
                 </div>
                 <div class="col-sm-3">
